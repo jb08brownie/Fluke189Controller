@@ -5,7 +5,7 @@ This project grew out of reverse-engineering the Fluke 189's undocumented serial
 
 <img width="602" height="473" alt="Screenshot 2026-07-18 104626" src="https://github.com/user-attachments/assets/25c9ed86-cd62-4d21-b54b-cad0fdbb9baf" />
 
-Features
+## Features
 
 
 Live meter display — mirrors the Fluke 189's primary and secondary readings, units, and active mode indicators (HOLD, AutoHOLD, MIN/MAX, AVG, REL/REL%, LOG) in a large, easy-to-read display.
@@ -24,7 +24,7 @@ Serial port management — auto-detects available COM ports, with a one-click re
 Packaged as a standalone Windows executable via PyInstaller, so it can be run without a Python environment installed.
 
 
-Hardware requirement: IR serial lead
+## Hardware requirement: IR serial lead
 
 The Fluke 189 communicates over an infrared serial interface on the back of the meter — it does not have a USB or standard RS-232 port. To use this software, you need an IR-to-serial (or IR-to-USB) interface cable that plugs into the meter's IR port and presents itself as a serial (COM) port on your computer.
 
@@ -37,7 +37,7 @@ Build one. I built my own from scratch — an FT232R-based USB-to-serial convert
 
 Either way, once the cable enumerates as a COM port on your PC, this app can talk to it.
 
-Requirements
+## Requirements
 
 
 Python 3.9+
@@ -55,7 +55,7 @@ An IR serial interface cable (see above)
 Windows, macOS, or Linux (the packaged .exe build is Windows-only; running from source works cross-platform, though the app has primarily been tested on Windows)
 
 
-Installation
+## Installation
 
 Option 1: Run from source
 
@@ -68,7 +68,7 @@ Option 2: Download the packaged executable
 
 Grab the latest .exe from the Releases page — no Python installation required. (Windows only.)
 
-Usage
+## Usage
 
 
 Plug in your IR serial cable and point it at the Fluke 189's IR window on the back of the meter.
@@ -90,14 +90,14 @@ pyinstaller --onefile --windowed --icon=logo.ico ^
 
 The resulting executable will be in the dist/ folder. The --add-data flags are required so the app icon and the DSEG7 display font are bundled correctly, matching the resource_path() lookup used at runtime.
 
-Background
+## Background
 
 The Fluke 189's serial protocol isn't publicly documented by Fluke. This app is the result of systematically logging and decoding the meter's QD 0 (live reading) and QD 2 (memory dump) binary responses to work out the mode, range, unit, and value encoding used internally. If you're interested in the reverse-engineering process itself, or in building your own IR interface cable, see the full writeup here: link to blog post.
 
-Disclaimer
+## Disclaimer
 
 This is an independent, community project and is not affiliated with, endorsed by, or supported by Fluke Corporation. Use at your own risk.
 
-License
+## License
 
 MIT: https://rem.mit-license.org
