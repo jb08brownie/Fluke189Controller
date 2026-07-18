@@ -72,11 +72,12 @@ Grab the latest .exe from the Releases page — no Python installation required.
 
 The packaged .exe is built with PyInstaller. If you want to rebuild it after making changes:
 
-bash 'pip install pyinstaller
-pyinstaller --onefile --windowed --icon=logo.ico ^
-  --add-data "logo.png;." ^
-  --add-data "fonts/dseg7.ttf;fonts" ^
-  fluke189_controller.py'
+```bash
+git clone https://github.com/jb08brownie/Fluke189Controller.git
+cd Fluke189Controller
+pip install -r requirements.txt
+python fluke189_controller.py
+```
 
 The resulting executable will be in the dist/ folder. The --add-data flags are required so the app icon and the DSEG7 display font are bundled correctly, matching the resource_path() lookup used at runtime.
 
