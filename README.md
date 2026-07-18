@@ -13,16 +13,11 @@ This project grew out of reverse-engineering the Fluke 189's undocumented serial
 - **Live trend plotting** — a rolling, fixed-width graph of the last 100 readings, automatically re-scaled and re-labelled when the meter's function or range changes.
 - **Live CSV logging** — log readings to a CSV file in real time while trend plotting, with a running timestamp column.
 - **Meter memory log download** — pull the readings stored in the meter's internal memory (via the QD 2 command) and export them as:
-
-a CSV file, and/or
-a PNG plot, with an optional custom title and a choice of an elapsed-time or clock-time x-axis.
-
-
-
-Automatic unit and mode decoding — decodes the Fluke 189's binary status bytes into the correct measurement mode, unit, and prefix (V, mV, Ω, Hz, dB, AC/DC, etc.), including special cases like duty cycle and pulse width.
-Serial port management — auto-detects available COM ports, with a one-click refresh, and confirms the meter's identity (model, firmware, serial number) on connect.
-Packaged as a standalone Windows executable via PyInstaller, so it can be run without a Python environment installed.
-
+  - a CSV file, and/or
+  - a PNG plot, with an optional custom title and a choice of an elapsed-time or clock-time x-axis.
+- Automatic unit and mode decoding — decodes the Fluke 189's binary status bytes into the correct measurement mode, unit, and prefix (V, mV, Ω, Hz, dB, AC/DC, etc.), including special cases like duty cycle and pulse width.
+- Serial port management — auto-detects available COM ports, with a one-click refresh, and confirms the meter's identity (model, firmware, serial number) on connect.
+- Packaged as a standalone Windows executable via PyInstaller, so it can be run without a Python environment installed.
 
 ## Hardware requirement: IR serial lead
 
