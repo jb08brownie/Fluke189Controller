@@ -48,8 +48,8 @@ There are two options:
 **Option 1: Run from source**
 
 ```bash
-git clone [https://github.com/<your-username>/<your-repo>](https://github.com/jb08brownie/Fluke189Controller).git
-cd <your-repo>
+git clone https://github.com/jb08brownie/Fluke189Controller.git
+cd Fluke189Controller
 pip install -r requirements.txt
 python fluke189_controller.py
 ```
