@@ -1,7 +1,7 @@
 # Fluke189Controller
 A Python desktop application for interfacing with the Fluke 189 digital multimeter using its infrared serial port. It provides a live meter display, real-time trend plotting, CSV data logging, and the ability to download and export the meter's internal memory log — all through a modern, custom GUI built with CustomTkinter.
 
-This project grew out of reverse-engineering the Fluke 189's undocumented serial protocol, since Fluke's own software (FlukeView) is dated, Windows-only in practice, and doesn't offer much flexibility. The full writeup of how the protocol was reverse-engineered, and how the IR interface cable was built, is on my blog [here](https://jonathanbrown95.wixsite.com/jonny-brown/post/fluke-189-ir-cable-software).
+This project grew out of reverse-engineering the Fluke 189's serial protocol, since Fluke's own software (FlukeView) is dated and expensive. The full writeup of how the protocol was reverse-engineered, and how the IR interface cable was built, is on my blog [here](https://jonathanbrown95.wixsite.com/jonny-brown/post/fluke-189-ir-cable-software).
 
 <img width="602" height="473" alt="Screenshot 2026-07-18 104626" src="https://github.com/user-attachments/assets/25c9ed86-cd62-4d21-b54b-cad0fdbb9baf" />
 
@@ -9,28 +9,24 @@ This project grew out of reverse-engineering the Fluke 189's undocumented serial
 
 
 - **Live meter display** — mirrors the Fluke 189's primary and secondary readings, units, and active mode indicators (HOLD, AutoHOLD, MIN/MAX, AVG, REL/REL%, LOG) in a large, easy-to-read display.
-- **Front-panel button control** — send the meter's front-panel commands (HOLD, REL Δ, MIN/MAX, RANGE, Hz/%/ms, backlight, and the up/down range buttons) directly from the app.
+- **Front-panel button control** — send the meter's front-panel commands (HOLD, REL Δ, MIN/MAX, RANGE, Hz/%/ms, and the up/down range buttons) directly from the app.
 - **Live trend plotting** — a rolling, fixed-width graph of the last 100 readings, automatically re-scaled and re-labelled when the meter's function or range changes.
 - **Live CSV logging** — log readings to a CSV file in real time while trend plotting, with a running timestamp column.
-- **Meter memory log download** — pull the readings stored in the meter's internal memory (via the QD 2 command) and export them as:
-  - a CSV file, and/or
+- **Meter memory log download** — pull the readings stored in the meter's internal memory and export them as:
+  - a CSV file
   - a PNG plot, with an optional custom title and a choice of an elapsed-time or clock-time x-axis.
-- Automatic unit and mode decoding — decodes the Fluke 189's binary status bytes into the correct measurement mode, unit, and prefix (V, mV, Ω, Hz, dB, AC/DC, etc.), including special cases like duty cycle and pulse width.
-- Serial port management — auto-detects available COM ports, with a one-click refresh, and confirms the meter's identity (model, firmware, serial number) on connect.
-- Packaged as a standalone Windows executable via PyInstaller, so it can be run without a Python environment installed.
+- **Automatic unit and mode decoding** — decodes the Fluke 189's binary status bytes into the correct measurement mode, unit, and prefix (V, mV, Ω, Hz, dB, AC/DC, etc.), including special cases like duty cycle and pulse width.
+- **Serial port management** — auto-detects available COM ports, with a one-click refresh, and confirms the meter's identity (model, firmware, serial number) on connect.
+- **Packaged as a standalone Windows executable** - via PyInstaller, so it can be run without a Python environment installed.
 
 ## Hardware requirement: IR serial lead
 
-The Fluke 189 communicates over an infrared serial interface on the back of the meter — it does not have a USB or standard RS-232 port. To use this software, you need an IR-to-serial (or IR-to-USB) interface cable that plugs into the meter's IR port and presents itself as a serial (COM) port on your computer.
+The Fluke 189 communicates over an infrared serial interface on the top of the meter. To use this software, you need an IR-to-serial interface cable that attaches onto the meter's IR port.
 
-You have two options:
+There are two options:
 
-
-1. **Buy one.** Fluke sells an official IR interface cable (sold as part of the FlukeView software/cable kits), and compatible third-party cables also exist.
+1. **Buy one.** Fluke sells an official IR interface cable (sold as part of the FlukeView software/cable kits).
 2. **Build one.** I built my own from scratch — an FT232R-based USB-to-serial converter driving an IR LED (TSAL6400) through a transistor stage (2N3906), with a photo-transistor (BPV11) for the return path, all housed in a 3D-printed enclosure. Full schematic, parts list, and build notes are in my blog post [here](https://jonathanbrown95.wixsite.com/jonny-brown/post/fluke-189-ir-cable-software).
-
-
-Either way, once the cable enumerates as a COM port on your PC, this app can talk to it.
 
 ## Requirements
 
@@ -51,10 +47,12 @@ Either way, once the cable enumerates as a COM port on your PC, this app can tal
 
 **Option 1: Run from source**
 
-bashgit clone https://github.com/<your-username>/<your-repo>.git
+```bash
+git clone https://github.com/<your-username>/<your-repo>.git
 cd <your-repo>
 pip install -r requirements.txt
 python fluke189_controller.py
+```
 
 **Option 2: Download the packaged executable**
 
