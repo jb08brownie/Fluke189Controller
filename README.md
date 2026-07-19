@@ -33,11 +33,13 @@ There are two options:
 - Python 3.9+
 - Dependencies:
 
-  customtkinter
-  pyserial
-  matplotlib
-  pillow
-  pyglet
+```
+customtkinter
+pyserial
+matplotlib
+Pillow
+pyglet
+```
 
 - An IR serial interface cable (see above)
 - Windows, macOS, or Linux (the packaged .exe build is Windows-only; running from source works cross-platform, though the app has primarily been tested on Windows)
